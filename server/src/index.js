@@ -14,11 +14,7 @@ import logger from 'morgan';
 import nunjucks from 'nunjucks';
 import compress from 'compression';
 
-let app = express();
-
-import api from './services/api';
-let scheme = site_config.https_enabled ? 'https://' : 'http://';
-let api_req_url = scheme + site_config.api_host + site_config.url;
+var app = express();
 
 /*
   Configuration
@@ -26,7 +22,7 @@ let api_req_url = scheme + site_config.api_host + site_config.url;
 app.disable("x-powered-by");
 app.use(compress());
 
-let env = process.env.NODE_ENV || "development";
+var env = process.env.NODE_ENV || "development";
 config.setEnv(env);
 app.set("ipaddr", config.HOSTNAME);
 app.set("port", config.PORT);
@@ -67,14 +63,14 @@ app.use("/", routes);
 /*
   Server startup
  */
-let serverStarted = function() {
-  // return console.log("This Server listening on http://" + (app.get("ipaddr")) + ":" + (app.get("port")));
+var serverStarted = function() {
+  console.log("This Server listening on http://" + (app.get("ipaddr")) + ":" + (app.get("port")));
 };
 
-let server = app.listen(app.get('port'), app.get('ipaddr'), serverStarted);
+var server = app.listen(app.get('port'), app.get('ipaddr'), serverStarted);
 
 app.use(function(req, res, next) {
-  let err;
+  var err;
   err = new Error('Not Found');
   err.status = 404;
   next(err);
