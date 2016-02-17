@@ -1,4 +1,4 @@
-let config = {
+var config = {
   /*
     Meta config
    */
@@ -11,13 +11,7 @@ let config = {
   charset: "UTF-8",
   favicon: "",
 
-  /*
-    API config
-   */
-  api_key: "",
-  api_host: "uat.example.in",
-  api_username: "",
-  api_password: ""
+  mongoUrl: 'localhost/qbot'
 };
 
 export default config;
