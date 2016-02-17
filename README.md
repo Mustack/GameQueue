@@ -1,41 +1,12 @@
-Angular ES6 Demo
+qBot
 ================
 
-Install
+Getting Started
 -------
 
-Download code repository and install all client side (frontend) / server side (node) dependecies
-
-    git clone https://github.com/abhiomkar/angular-es6.git
-    cd angular-es6
-    npm install
-
-Development
------------
-
-    gulp
-
-Debug
------
-
-    gulp build
-    node-debug server/dist/app.js
-
-* Debugger (node-inspector) runs at http://127.0.0.1:8080/?ws=127.0.0.1:8080&port=5858 (wait for the assets to load)
-* App runs at http://localhost:4000
-
-Build
------
-
-    git pull
-    npm install && gulp build
-
-Demo
-----
-
-https://angular-es6-demo.herokuapp.com
-
-Set Environment Variables
--------------------------
-
-set `NODE_ENV` env variable to 'production' or 'development' (default) accordingly
+* install NodeJS https://nodejs.org/en/
+* Make sure `node` and `npm` are recognized commands on your command line. If not, you'll have to google how to add them to the path.
+* Run `npm install -g gulp` to install gulp, our build task runner.
+* Run `npm install` to automatically install all of our dependencies.
+* Run `gulp` to automatically build and serve the application
+* Go to http://localhost:3003 to use the web app
