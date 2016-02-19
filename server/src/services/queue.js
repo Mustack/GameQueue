@@ -1,9 +1,9 @@
-import Viewer from '../models/viewer.js';
+import QE from '../models/queueEntry';
 
 var exports = {};
 
 exports.enqueue = function(username) {
-  return Viewer.create({username});
+  return QE.create({username});
 };
 
 export default exports;

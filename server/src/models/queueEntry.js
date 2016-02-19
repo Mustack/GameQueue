@@ -19,4 +19,4 @@ viewerSchema.pre('save', function(next) {
   next();
 });
 
-export default db.model('Viewer', viewerSchema);
+export default db.model('QueueEntry', viewerSchema);
