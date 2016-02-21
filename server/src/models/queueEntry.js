@@ -1,8 +1,8 @@
 /*
  * This model is for viewers, who are part of the queue.
  */
-import { Schema } from 'mongoose';
-import db from './index';
+var Schema = require('mongoose').Schema;
+var db = require('./index');
 
 var viewerSchema = new Schema({
   username    : { type : String, required: true, unique: true},
@@ -19,4 +19,4 @@ viewerSchema.pre('save', function(next) {
   next();
 });
 
-export default db.model('QueueEntry', viewerSchema);
+module.exports = db.model('QueueEntry', viewerSchema);

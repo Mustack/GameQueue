@@ -1,12 +1,12 @@
-import config from '../config/site-config';
-import _ from 'lodash';
+var config = require('../config/site-config');
+var _ = require('lodash');
 
-let env = process.env.NODE_ENV || 'development';
+var env = process.env.NODE_ENV || 'development';
 
-let Home = {};
+var Home = {};
 
 Home.index = function(request, response) {
-	let data = {};
+	var data = {};
 
   return response.render('home.html', {
     data: data,
@@ -17,4 +17,4 @@ Home.index = function(request, response) {
   });
 };
 
-export default Home;
+module.exports = Home;

@@ -1,6 +1,6 @@
-let normalizePort;
+var normalizePort;
 
-let Module = {};
+var Module = {};
 
 Module.setEnv = function(environment) {
   /*
@@ -34,7 +34,7 @@ Module.setEnv = function(environment) {
  */
 
 normalizePort = function(val) {
-  let port;
+  var port;
   port = parseInt(val, 10);
   if (isNaN(port)) {
     return val;
@@ -45,4 +45,4 @@ normalizePort = function(val) {
   return false;
 };
 
-export default Module;
+module.exports = Module;

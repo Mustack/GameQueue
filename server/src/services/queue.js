@@ -1,4 +1,4 @@
-import QE from '../models/queueEntry';
+var QE = require('../models/queueEntry');
 
 var exports = {};
 
@@ -6,4 +6,4 @@ exports.enqueue = function(username) {
   return QE.create({username});
 };
 
-export default exports;
+module.exports = exports;

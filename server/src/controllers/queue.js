@@ -1,4 +1,4 @@
-import queueSvc from '../services/queue';
+var queueSvc = require('../services/queue');
 
 var exports = {};
 
@@ -12,4 +12,4 @@ exports.enqueue = function(request, response) {
     });
 };
 
-export default exports;
+module.exports = exports;

@@ -1,18 +1,18 @@
 /*
   Module dependencies.
  */
-import request from 'request';
-import _ from 'lodash';
+var request = require('request');
+var _ = require('lodash');
 
-import config from './config';
-import site_config from './config/site-config';
-import express from 'express';
-import path from 'path';
-import bodyParser from 'body-parser';
-import cookieParser from 'cookie-parser';
-import logger from 'morgan';
-import nunjucks from 'nunjucks';
-import compress from 'compression';
+var config = require('./config');
+var site_config = require('./config/site-config');
+var express = require('express');
+var path = require('path');
+var bodyParser = require('body-parser');
+var cookieParser = require('cookie-parser');
+var logger = require('morgan');
+var nunjucks = require('nunjucks');
+var compress = require('compression');
 
 var app = express();
 
@@ -57,7 +57,7 @@ app.post('/api/middleware-example/*', function (req, res, next) {
   Routes config
  */
 
-import routes from './route';
+var routes = require('./route');
 app.use("/", routes);
 
 /*
@@ -98,4 +98,4 @@ app.use(function(err, req, res, next) {
   });
 });
 
-export default server;
+module.exports = server;

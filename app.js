@@ -1,2 +1,2 @@
 var app;
-app = require("./server/dist/app");
+app = require("./server/src");

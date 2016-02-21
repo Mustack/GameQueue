@@ -14,4 +14,4 @@ var config = {
   mongoUrl: 'localhost/qbot'
 };
 
-export default config;
+module.exports = config;
