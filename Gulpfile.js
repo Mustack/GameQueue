@@ -45,16 +45,10 @@ var paths = {
 // build our modules
 var webbackConfig = require('./webpack.config');
 
-gulp.task('webpack:frontend', function(){
+gulp.task('webpack', function(){
 	return gulp.src(paths.entry)
-		.pipe(webpack(webbackConfig.frontend))
+		.pipe(webpack(webbackConfig))
 		.pipe(gulp.dest(paths.output));
-});
-
-gulp.task('webpack:server', function(){
-	return gulp.src('./server/src/index.js')
-		.pipe(webpack(webbackConfig.server))
-		.pipe(gulp.dest('./server/dist/'));
 });
 
 gulp.task('browser-sync', ['nodemon-debug'], function() {
@@ -74,12 +68,12 @@ gulp.task('watch:frontend', function(){
 		[paths.images]
 	);
 
-	gulp.watch(allPaths, ['webpack:frontend', reload]);
+	gulp.watch(allPaths, ['webpack', reload]);
 });
 
 gulp.task('watch:server', function(){
 	console.log('watching:server', path.join(__dirname, 'server/src/**/*.js'));
-	gulp.watch(['./server/src/**/*.js', './server/views/**/*.html', './server/src/**/*.json'], ['webpack:server', reload]);
+	gulp.watch(['./server/src/**/*.js', './server/views/**/*.html', './server/src/**/*.json'], [reload]);
 });
 
 gulp.task('component', function(){
@@ -105,8 +99,8 @@ gulp.task('component', function(){
 gulp.task('nodemon', function(cb) {
 	var called = false;
 	nodemon({
-		script: './server/dist/app.js',
-		watch: ['server/dist/app.js']
+		script: './server/src/index.js',
+		watch: ['server/src']
 	})
 	.on('start', function() {
 		// ensure start only got called once
@@ -124,9 +118,9 @@ gulp.task('nodemon-debug', function(cb) {
 		},
 		ext: 'js',
 		ignore: ['.idea/*', 'node_modules/*'],
-		script: './server/dist/app.js',
+		script: './server/src/index.js',
 		verbose: true,
-		watch: ['server/dist/app.js']
+		watch: ['server/src']
 	})
 	.on('start', function() {
 		// ensure start only got called once
@@ -138,9 +132,8 @@ gulp.task('nodemon-debug', function(cb) {
 
 gulp.task('clean', function(){
   return del([
-    'pubic/dist/**/*',
-    'server/dist/**/*'
-  ]);
+    'pubic/dist/**/*'
+	]);
 });
 
 gulp.task('watch', function(done){
@@ -148,9 +141,9 @@ gulp.task('watch', function(done){
 });
 
 gulp.task('build', function(done) {
-	sync('webpack:frontend', 'webpack:server', done);
+	sync('webpack', done);
 });
 
 gulp.task('default', function(done){
-	sync('clean', 'webpack:server', 'webpack:frontend', 'watch', 'browser-sync', done);
+	sync('clean', 'webpack', 'watch', 'browser-sync', done);
 });

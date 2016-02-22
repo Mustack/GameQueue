@@ -26,7 +26,7 @@ fs.readdirSync('node_modules')
 
 var Module = {};
 
-Module.frontend = {
+Module = {
 	devtool: 'sourcemap',
 	output: {
 		filename: 'main.js'
@@ -70,25 +70,7 @@ if (env === 'production') {
 		})
 	}
 
-	Module.frontend.plugins.push(minifyJS());
+	Module.plugins.push(minifyJS());
 }
-
-Module.server = {
-	target: 'node',
-	output: {
-    filename: 'app.js'
-  },
-	module: {
-		loaders: [
-			{ test: /\.json$/, loader: 'json'},
-			{ test: /\.js$/, exclude: /node_modules/, loader: 'babel' }
-		]
-	},
-	externals: nodeModules,
-	node: {
-		console: true
-	},
-	devtool: 'sourcemap'
-};
 
 module.exports = Module;
