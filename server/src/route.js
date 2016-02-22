@@ -9,6 +9,7 @@ var router = express.Router();
 
 router.all("/", HomeController.index);
 
-router.post('/queue/:queue_id/entry', QueueController.enqueue);
+router.post('/queue/:queue_owner/entry', QueueController.enqueue);
+router.delete('/queue/:queue_owner/entry/:username', QueueController.remove);
 
 module.exports = router;
