@@ -4,19 +4,24 @@
 var Schema = require('mongoose').Schema;
 var db = require('./index');
 
-var viewerSchema = new Schema({
-  username    : { type : String, required: true, unique: true},
-  created_at  : { type : Date },
+var queueEntrySchema = new Schema({
+  username    : { type : String, required: true, index: true },
+  queueOwner  : { type : String, required: true, index: true },
+  createdAt   : { type : Date },
 });
 
-viewerSchema.pre('save', function(next) {
+// This will automatically add a timestamp for createdAt
+queueEntrySchema.pre('save', function(next) {
   var now = new Date();
   this.updated_at = now
-  if (!this.created_at) {
-    this.created_at = now;
+  if (!this.createdAt) {
+    this.createdAt = now;
   }
 
   next();
 });
 
-module.exports = db.model('QueueEntry', viewerSchema);
+// This ensures that each combination of username and queueOwner are unique
+queueEntrySchema.index({username: 1, queueOwner: 1}, {unique: true});
+
+module.exports = db.model('QueueEntry', queueEntrySchema);

@@ -9,6 +9,6 @@ var router = express.Router();
 
 router.all("/", HomeController.index);
 
-router.post('/QueueEntry', QueueController.enqueue);
+router.post('/queue/:queue_id/entry', QueueController.enqueue);
 
 module.exports = router;
