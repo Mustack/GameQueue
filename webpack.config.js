@@ -24,9 +24,9 @@ fs.readdirSync('node_modules')
     nodeModules[mod] = 'commonjs ' + mod;
   });
 
-var Module = {};
+var exports = {};
 
-Module = {
+exports = {
 	devtool: 'sourcemap',
 	output: {
 		filename: 'main.js'
@@ -70,7 +70,7 @@ if (env === 'production') {
 		})
 	}
 
-	Module.plugins.push(minifyJS());
+	exports.plugins.push(minifyJS());
 }
 
-module.exports = Module;
+module.exports = exports;

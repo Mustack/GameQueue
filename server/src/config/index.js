@@ -1,17 +1,17 @@
 var normalizePort;
 
-var Module = {};
+var exports = {};
 
-Module.setEnv = function(environment) {
+exports.setEnv = function(environment) {
   /*
     Common config
    */
-  Module.HOSTNAME = "0.0.0.0";
-  Module.PORT = normalizePort(process.env.PORT || "5000");
-  Module.PUBLIC_PATH = "public";
-  Module.VIEWS_ENGINE = "html";
-  // Module.VIEWS_PATH = "server/views";
-  Module.IMAGES_PATH = "images";
+  exports.HOSTNAME = "0.0.0.0";
+  exports.PORT = normalizePort(process.env.PORT || "5000");
+  exports.PUBLIC_PATH = "public";
+  exports.VIEWS_ENGINE = "html";
+  // exports.VIEWS_PATH = "server/views";
+  exports.IMAGES_PATH = "images";
 
   /*
     Environment specific config
@@ -45,4 +45,4 @@ normalizePort = function(val) {
   return false;
 };
 
-module.exports = Module;
+module.exports = exports;
