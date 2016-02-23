@@ -28,4 +28,17 @@ exports.remove = function(request, response) {
     });
 };
 
+exports.dequeue = function(request, response) {
+  var queueOwner = request.params.queue_owner;
+  var count = Number(request.query.count) || 1;
+
+  queueSvc.dequeue(queueOwner, count)
+    .then((entries) => {
+      response.status(200).send(entries);
+    })
+    .catch((error) => {
+      response.send(error);
+    });
+};
+
 module.exports = exports;
