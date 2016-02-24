@@ -6,10 +6,10 @@ var mongooseHidden = require('mongoose-hidden')({});
 var db = require('./index');
 
 var queueEntrySchema = new Schema({
-  username    : { type : String, required: true, index: true },
-  queueOwner  : { type : String, required: true, index: true, hide: true },
-  isWaiting   : { type : Boolean, default: true },
-  createdAt   : { type : Date,  default: new Date() }
+  username: { type : String, required: true, index: true },
+  queueOwner: { type : String, required: true, index: true, hide: true },
+  isConfirmationPending: { type : Boolean, default: false },
+  createdAt: { type : Date,  default: new Date() }
 });
 
 // This ensures that each combination of username and queueOwner are unique

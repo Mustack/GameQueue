@@ -7,7 +7,8 @@ var exports = {};
 // Todo: dispatch events for all of these actions
 exports.getQueue = function(queueOwner) {
   return QE.find({queueOwner})
-    .sort({isWaiting: 'desc'})
+    .sort({createdAt: 'asc'})
+    .sort({isConfirmationPending: 'asc'})
     .then((queueEntries) => {
       return {
         owner: queueOwner,
@@ -25,12 +26,12 @@ exports.remove = function(queueOwner, username) {
 };
 
 exports.dequeue = function(queueOwner, count) {
-  return QE.find({queueOwner, isWaiting: true})
-    .sort({createdAt: 'desc'})
+  return QE.find({queueOwner, isConfirmationPending: true})
+    .sort({createdAt: 'asc'})
     .limit(count)
     .then((queueEntries) => {
       return bluebird.map(queueEntries, (queueEntry) => {
-        queueEntry.isWaiting = false;
+        queueEntry.isConfirmationPending = false;
 
         return queueEntry.save();
       });
