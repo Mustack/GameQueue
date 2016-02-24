@@ -7,7 +7,7 @@ var db = require('./index');
 
 var queueEntrySchema = new Schema({
   username    : { type : String, required: true, index: true },
-  queueOwner  : { type : String, required: true, index: true },
+  queueOwner  : { type : String, required: true, index: true, hide: true },
   isWaiting   : { type : Boolean, default: true },
   createdAt   : { type : Date,  default: new Date() }
 });
