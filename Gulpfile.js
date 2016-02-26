@@ -137,7 +137,9 @@ gulp.task('clean', function(){
 });
 
 gulp.task('watch', function(done){
-	sync('watch:frontend', 'watch:server', done);
+	sync('watch:frontend'
+	// , 'watch:server'
+	, done);
 });
 
 gulp.task('build', function(done) {
