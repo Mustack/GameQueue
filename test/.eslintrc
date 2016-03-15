@@ -1,0 +1,16 @@
+---
+    env:
+        mocha: true
+    rules:
+        semi:
+            - 2
+            - always
+        quotes:
+            - 2
+            - single
+        strict:
+            - 2
+            - global
+    globals:
+        sinon: false
+        expect: false
