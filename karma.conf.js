@@ -7,7 +7,7 @@ var options = {
     reporters: ['mocha', 'junit'],
 
     junitReporter: {
-        outputDir: process.env.CIRCLE_TEST_REPORTS || config.dest
+        outputDir: process.env.CIRCLE_TEST_REPORTS || config.dest.root
     },
 
     files: [].concat(

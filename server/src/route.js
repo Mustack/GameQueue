@@ -1,13 +1,6 @@
-var express = require('express');
-var path = require('path');
+var router = require('express').Router();
 
-var config_globals = require('./config/site-config');
-var homeController = require('./controllers/home');
 var queueController = require('./controllers/queue');
-
-var router = express.Router();
-
-router.all("/", homeController.index);
 
 router.get('/queue/:queue_owner', queueController.getQueue)
 router.post('/queue/:queue_owner/entry', queueController.enqueue);

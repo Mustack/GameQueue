@@ -11,14 +11,12 @@ module.exports = {
   context: path.join(__dirname, 'client'),
   entry: {
     app: [
-        'webpack-dev-server/client?http://localhost:8080/',
-        'webpack/hot/dev-server',
         './' + config.src.main
     ]
   },
   devtool: 'source-map',
   output: {
-    path: path.resolve(config.dest),
+    path: path.resolve(config.dest.root),
     publicPath: '/',
     filename: config.src.main
   },
@@ -50,7 +48,6 @@ module.exports = {
     ]
   },
   plugins: [
-    new webpack.HotModuleReplacementPlugin(),
     new ExtractTextPlugin('app.css')
   ],
   resolve: { fallback: path.join(__dirname, 'node_modules') },

@@ -1,5 +1,4 @@
 'use strict';
-var _ = require('lodash');
 
 var devConfig = {
     production: false,
@@ -17,15 +16,9 @@ var devConfig = {
         main: 'app.js'
     },
 
-    dest: './build'
+    dest: {
+      root: './build'
+    }
 };
 
-var productionConfig = Object.create(devConfig);
-_.assign(productionConfig, {
-    production: true,
-    server: {
-        port: 80
-    }
-});
-
-module.exports = process.env.NODE_ENV === 'production' ? productionConfig : devConfig;
+module.exports = devConfig;

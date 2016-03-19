@@ -1,3 +1,5 @@
+var globalConfig = require('../../../tasks/config');
+
 var normalizePort;
 
 var exports = {};
@@ -7,8 +9,8 @@ exports.setEnv = function(environment) {
     Common config
    */
   exports.HOSTNAME = "0.0.0.0";
-  exports.PORT = normalizePort(process.env.PORT || "5000");
-  exports.PUBLIC_PATH = "public";
+  exports.PORT = globalConfig.server.port;
+  exports.PUBLIC_PATH = "build";
   exports.VIEWS_ENGINE = "html";
   // exports.VIEWS_PATH = "server/views";
   exports.IMAGES_PATH = "images";

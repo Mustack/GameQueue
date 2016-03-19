@@ -1,5 +1,4 @@
 import {element} from 'deku';
-import increment from './increment';
 
 const Root = {
     render({context}) {

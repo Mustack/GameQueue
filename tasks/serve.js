@@ -1,39 +1,21 @@
-'use strict';
-
-var config = require('./config');
-var gutil = require('gulp-util');
-var webpack = require('webpack');
-var WebpackDevServer = require('webpack-dev-server');
-var webpackConfig = require('../webpack.config.js');
-
+var browserSync = require('browser-sync');
 var open = require('open');
+var config = require('./config');
 
 function serve() {
-    // Add some development configuration options
-    var devConfig = Object.create(webpackConfig);
-    devConfig.devtool = 'inline-source-map';
-    devConfig.debug = true;
-
-    // Start a webpack-dev-server
-    var server = new WebpackDevServer(webpack(devConfig), {
-        contentBase: config.dest,
-        publicPath: devConfig.output.publicPath,
-
-        stats: {
-            colors: true
-        },
-        hot: true,
-        noInfo: true
-    });
-
-    server.listen(config.server.port, 'localhost', function(err) {
-        if (err) throw new gutil.PluginError('webpack-dev-server', err);
-        gutil.log('[webpack-dev-server]', 'http://localhost:' + config.server.port + '/webpack-dev-server/index.html');
-
-        open('http://localhost:' + config.server.port);
-    });
+  browserSync.init(
+    {
+      baseDir: config.dest.root,
+  		proxy: 'localhost:' + config.server.port,
+  		open: false
+  	},
+    function(err, data) {
+        var port = data.options.get('port');
+        open('http://localhost:'+ port);
+    }
+  );
 }
 
-serve.depends = ['watch'];
+serve.depends = ['watch', 'nodemon', 'build'];
 
 module.exports = serve;
